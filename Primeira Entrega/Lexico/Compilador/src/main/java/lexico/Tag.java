@@ -23,6 +23,9 @@ public class Tag {
     public final static int WHILE = 265;
     public final static int READ = 266;
     public final static int WRITE = 267;
+    public final static int BEGIN = 282;
+    public final static int END = 283;
+    public  final static int NOT = 284;
     
     //Operadores e pontuação
     public final static int EQ = 268;

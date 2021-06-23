@@ -8,6 +8,8 @@
 package lexico;
 import java.io.*;
 import java.util.*;
+import java.io.IOExceptiom;
+import java.io.FileReader;
 /**
  *
  * @author pedroelias
@@ -46,11 +48,61 @@ public class Lexer {
         reserve(new Word("while",Tag.WHILE));
         reserve(new Word("read",Tag.READ));
         reserve(new Word("write",Tag.WRITE));
-        reserve(new Word("if",Tag.IF));
-        
+   
         
     }
-    
+    //ler arquivos
+    private void readch() throws IOExceptiom{
+        ch=(char)file.read;
+    }
+//leitura do proximo caractere
+    private boolean readech(char c) throws IOException{
+        readch();
+        if(ch!=c) return false;
+        ch='';  //se verdade retona true e limpa ch
+        return true;
+    }
+    public Token scan() throws IOExceptions{
+        //desconsidea delimetadors na estrada
+        for (;;readch()){
+            if (ch=='' || ch=='\t' || ch=='\r' || ch=='\b') continue;
+            else if (ch=='\n') line ++; //conta linha
+            else break;
+        }
+        Sitch (ch){ //operador
+            case "&":
+                if (readch('&')) return Word.and;   // &&
+                else return new Token('&');         // &
+            case '|':
+                if (readch('|')) return Word.or;    // ||
+                else return new Token('|');         // |
+            case'=':
+                if(readch('='))return Word.eq;      // ==
+                else return new Token('=');         // =
+            case'<':
+                if (readch('=')) return Word.le;    // <=
+                else return new Token('<');         // <
+            case '>':
+                if (readch('=')) return Word.ge;    // >=
+                else return new Token('>');         // >
+            case '!':
+                if (readch('='))return Word.ne;     // !=
+                else return new Token('!');         // !
+        }
+        //Numeros  (constante Numericas)
+        if (Character.isDigit(ch)){
+            int value =0;
+            do {
+                value = 10*value + Character.digit(ch, 10);
+                readch();
+            } while (Character.isDigit(ch));
+            return new Num(value);
+        }
+        //identificadores
+        if(Character.isLetter(ch)){
+            stringBuffer sb = new stringBuffer();
+            do {
+                sb.append(ch);
     
 
 }
