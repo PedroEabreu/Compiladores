@@ -10,6 +10,8 @@ import java.io.*;
 import java.util.*;
 import java.io.IOExceptiom;
 import java.io.FileReader;
+import java.util.Hashtable;
+
 /**
  *
  * @author pedroelias
@@ -22,10 +24,11 @@ public class Lexer {
     
     private Hashtable words = new Hashtable();
     
-    private void reserve(Word w){
+    private void reserve(Word w)
         words.put(w.getLexeme(), w);
     }
-    
+
+    //Construtor
     public Lexer(String fileName) throws FileNotFoundException{
     
         try{
@@ -62,47 +65,48 @@ public class Lexer {
         ch='';  //se verdade retona true e limpa ch
         return true;
     }
-    public Token scan() throws IOExceptions{
+    public Token scan() throws IOExceptions {
         //desconsidea delimetadors na estrada
-        for (;;readch()){
-            if (ch=='' || ch=='\t' || ch=='\r' || ch=='\b') continue;
-            else if (ch=='\n') line ++; //conta linha
+        for (; ; readch()) {
+            if (ch == '' || ch == '\t' || ch == '\r' || ch == '\b') continue;
+            else if (ch == '\n') line++; //conta linha
             else break;
         }
-        Sitch (ch){ //operador
+        Sitch(ch) { //operadores
             case "&":
                 if (readch('&')) return Word.and;   // &&
                 else return new Token('&');         // &
             case '|':
                 if (readch('|')) return Word.or;    // ||
                 else return new Token('|');         // |
-            case'=':
-                if(readch('='))return Word.eq;      // ==
+            case '=':
+                if (readch('=')) return Word.eq;      // ==
                 else return new Token('=');         // =
-            case'<':
+            case '<':
                 if (readch('=')) return Word.le;    // <=
                 else return new Token('<');         // <
             case '>':
                 if (readch('=')) return Word.ge;    // >=
                 else return new Token('>');         // >
             case '!':
-                if (readch('='))return Word.ne;     // !=
+                if (readch('=')) return Word.ne;     // !=
                 else return new Token('!');         // !
         }
         //Numeros  (constante Numericas)
-        if (Character.isDigit(ch)){
-            int value =0;
+        if (Character.isDigit(ch)) {
+            int value = 0;
             do {
-                value = 10*value + Character.digit(ch, 10);
+                value = 10 * value + Character.digit(ch, 10);
                 readch();
             } while (Character.isDigit(ch));
             return new Num(value);
         }
         //identificadores
-        if(Character.isLetter(ch)){
+        if (Character.isLetter(ch)) {
             stringBuffer sb = new stringBuffer();
             do {
                 sb.append(ch);
-    
-
+            }
+        }
+    }
 }

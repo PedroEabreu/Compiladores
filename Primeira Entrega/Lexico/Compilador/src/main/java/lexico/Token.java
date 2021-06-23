@@ -11,13 +11,19 @@ package lexico;
  */
 public class Token {
     public final int tag;
+    public int line;
+    private String lexeme="1";
     
-    public Token(int t){
+    public Token(int t, int line){
         tag = t;
+        this.line = line;
     }
     
     public String toString(){
-        return "" + tag;
+        if (lexeme == '1') {
+            return "" + lexeme;
+        }
+        else return "" + tag;
     }
 
     public void imprimeToken(Token T) {
@@ -32,8 +38,8 @@ public class Token {
             case Tag.STRING:
                 valor = "string";
                 break;
-            case  Tag.FLOAT:
-                valor ="float";
+            case Tag.FLOAT:
+                valor = "float";
                 break;
             case Tag.INIT:
                 valor = "init";
@@ -111,6 +117,34 @@ public class Token {
                 valor = "id";
                 break;
             default:
-                valor = "" + (char)tag;
+                valor = "" + (char) tag;
         }
+    }
+    public String getLexeme(){
+        return lexeme;
+    }
+    public int getTag(){
+        return tag;
+    }
+
+    public static boolean isLetter(char ch){
+        int A = (int)'A';
+        int Z = (int)'Z';
+        int a = (int)'a';
+        int z = (int)'z';
+        if (((int)ch >= A && (int)ch <=Z)|| ((int)ch >=a && (int)ch <= z)){
+            return true
+        }
+        return false;
+    }
+
+    public static boolean isNumber(char ch){
+        int zero = (int)'0';
+        int nove = (int)'9';
+        if (((int)ch >= zero && ch <= nove)) {
+            return true;
+        }
+        return false;
+    }
+
 }
