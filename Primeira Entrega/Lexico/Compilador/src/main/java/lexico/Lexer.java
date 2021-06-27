@@ -51,6 +51,19 @@ public class Lexer {
         
     }
     
+    private void readch() throws IOException{
+        ch = (char) file.read();
+    }
+    
+    private boolean readch(char c) throws IOException{
+        readch();
+        
+        if(ch != c){
+            return false;
+        }
+        ch = ' ';
+        return true;
+    }
     
 
 }
