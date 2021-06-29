@@ -25,12 +25,12 @@ public class Word extends Token{
     public static final Word True = new Word("&&",Tag.TRUE);
     public static final Word False = new Word("&&",Tag.FALSE);
     
-    public Word(String s, int tag){
-        super(tag);
+    public Word(String s, int tag, int line){
+        super(tag, line);
         lexeme = s;
     }
     
-    public String toString(){
+    public String toString() {
         return "" + lexeme;
     }
     

@@ -10,6 +10,8 @@ import java.io.*;
 import java.util.*;
 //import java.io.IOExceptiom;
 import java.io.FileReader;
+import java.util.Hashtable;
+
 /**
  *
  * @author pedroelias
@@ -22,10 +24,11 @@ public class Lexer {
     
     public Hashtable words = new Hashtable();
     
-    private void reserve(Word w){
+    private void reserve(Word w)
         words.put(w.getLexeme(), w);
     }
-    
+
+    //Construtor
     public Lexer(String fileName) throws FileNotFoundException{
     System.out.println(fileName);
         try{
@@ -85,25 +88,25 @@ public class Lexer {
             case '|':
                 if (readch('|')) return Word.or;    // ||
                 else return new Token('|');         // |
-            case'=':
-                if(readch('='))return Word.eq;      // ==
+            case '=':
+                if (readch('=')) return Word.eq;      // ==
                 else return new Token('=');         // =
-            case'<':
+            case '<':
                 if (readch('=')) return Word.le;    // <=
                 else return new Token('<');         // <
             case '>':
                 if (readch('=')) return Word.ge;    // >=
                 else return new Token('>');         // >
             case '!':
-                if (readch('='))return Word.ne;     // !=
+                if (readch('=')) return Word.ne;     // !=
                 else return new Token('!');         // !
         }
         
         //Numeros  (constante Numericas)
-        if (Character.isDigit(ch)){
-            int value =0;
+        if (Character.isDigit(ch)) {
+            int value = 0;
             do {
-                value = 10*value + Character.digit(ch, 10);
+                value = 10 * value + Character.digit(ch, 10);
                 readch();
             } while (Character.isDigit(ch));
             return new Num(value);
