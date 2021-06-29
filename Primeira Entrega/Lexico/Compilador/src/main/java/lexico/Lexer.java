@@ -8,6 +8,8 @@
 package lexico;
 import java.io.*;
 import java.util.*;
+//import java.io.IOExceptiom;
+import java.io.FileReader;
 /**
  *
  * @author pedroelias
@@ -18,14 +20,14 @@ public class Lexer {
     private char ch = ' ';
     private FileReader file;
     
-    private Hashtable words = new Hashtable();
+    public Hashtable words = new Hashtable();
     
     private void reserve(Word w){
         words.put(w.getLexeme(), w);
     }
     
     public Lexer(String fileName) throws FileNotFoundException{
-    
+    System.out.println(fileName);
         try{
             file = new FileReader(fileName);
         }
@@ -46,13 +48,13 @@ public class Lexer {
         reserve(new Word("while",Tag.WHILE));
         reserve(new Word("read",Tag.READ));
         reserve(new Word("write",Tag.WRITE));
-        reserve(new Word("if",Tag.IF));
-        
+   
         
     }
     
     private void readch() throws IOException{
         ch = (char) file.read();
+        System.out.println(ch);
     }
     
     private boolean readch(char c) throws IOException{
@@ -63,6 +65,70 @@ public class Lexer {
         }
         ch = ' ';
         return true;
+    }
+
+    public Token scan() throws IOException{
+        //desconsidea delimetadors na estrada
+        for (;;readch()){
+         //   System.out.print(ch);
+            if(ch==' '||ch=='\t'||ch=='\r'||ch=='\b'){
+                continue;
+            }
+            else if (ch=='\n') line ++; //conta linha
+            else break;
+        }
+        //System.out.println();
+        switch (ch){ //operador
+            case '&':
+                if (readch('&')) return Word.and;   // &&
+                else return new Token('&');         // &
+            case '|':
+                if (readch('|')) return Word.or;    // ||
+                else return new Token('|');         // |
+            case'=':
+                if(readch('='))return Word.eq;      // ==
+                else return new Token('=');         // =
+            case'<':
+                if (readch('=')) return Word.le;    // <=
+                else return new Token('<');         // <
+            case '>':
+                if (readch('=')) return Word.ge;    // >=
+                else return new Token('>');         // >
+            case '!':
+                if (readch('='))return Word.ne;     // !=
+                else return new Token('!');         // !
+        }
+        
+        //Numeros  (constante Numericas)
+        if (Character.isDigit(ch)){
+            int value =0;
+            do {
+                value = 10*value + Character.digit(ch, 10);
+                readch();
+            } while (Character.isDigit(ch));
+            return new Num(value);
+        }
+        //identificadores
+        if(Character.isLetter(ch)){
+            StringBuffer sb = new StringBuffer();
+            do {
+                sb.append(ch);
+                readch();
+            }while(Character.isLetterOrDigit(ch));
+            
+            String s = sb.toString();
+            Word w = (Word) words.get(s);
+            
+            if(w!=null){
+                return w;
+            }
+            w = new Word(s,Tag.ID);
+            words.put(s,w);
+            return w;
+        }
+        Token t = new Token(ch);
+        ch = ' ';
+        return t;
     }
     
 

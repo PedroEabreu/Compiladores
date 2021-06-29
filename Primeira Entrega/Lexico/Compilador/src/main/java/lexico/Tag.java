@@ -23,23 +23,26 @@ public class Tag {
     public final static int WHILE = 265;
     public final static int READ = 266;
     public final static int WRITE = 267;
+    public final static int BEGIN = 268;
+    public final static int END = 269;
+    public  final static int NOT = 270;
     
     //Operadores e pontuação
-    public final static int EQ = 268;
-    public final static int GE = 269;
-    public final static int LE = 270;
-    public final static int NE = 271;
-    public final static int GT = 272;
-    public final static int LT = 273;
-    public final static int AND = 274;
-    public final static int OR = 275;
-    public final static int ADD = 276;
-    public final static int SUB = 277;
-    public final static int TRUE = 280;
-    public final static int FALSE = 281;
+    public final static int EQ = 271;
+    public final static int GE = 272;
+    public final static int LE = 273;
+    public final static int NE = 274;
+    public final static int GT = 275;
+    public final static int LT = 276;
+    public final static int AND = 277;
+    public final static int OR = 278;
+    public final static int ADD = 279;
+    public final static int SUB = 280;
+    public final static int TRUE = 281;
+    public final static int FALSE = 282;
 
     //Outros tokens
-    public final static int NUM = 278;
-    public final static int ID = 279;
+    public final static int NUM = 283;
+    public final static int ID = 284;
 
 }
