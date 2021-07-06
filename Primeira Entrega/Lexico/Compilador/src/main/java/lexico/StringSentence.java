@@ -9,16 +9,16 @@ package lexico;
  *
  * @author pedroelias
  */
-public class Num extends Token{
+public class StringSentence extends Token{
     
-    public final int value;
+    String sentence;
     
-    public Num(int value){
-        super(Tag.NUM, 0);
-        this.value = value;
+    public StringSentence(String s, int tag, int line){
+        super(tag, line);
+        sentence = s;
     }
-    
+
     public String toString(){
-        return "" + value;
+        return sentence;
     }
 }

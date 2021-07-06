@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.*;
 //import java.io.IOExceptiom;
 import java.io.FileReader;
+import static java.lang.System.exit;
 import java.util.Hashtable;
 
 /**
@@ -21,16 +22,14 @@ public class Lexer {
     public static int line = 1;
     private char ch = ' ';
     private FileReader file;
-    
     public Hashtable words = new Hashtable();
     
-    private void reserve(Word w)
+    private void reserve(Word w){
         words.put(w.getLexeme(), w);
     }
 
     //Construtor
     public Lexer(String fileName) throws FileNotFoundException{
-    System.out.println(fileName);
         try{
             file = new FileReader(fileName);
         }
@@ -39,25 +38,27 @@ public class Lexer {
             throw e;
         }
         
-        reserve(new Word("if",Tag.IF));
-        reserve(new Word("class",Tag.CLASS));
-        reserve(new Word("int",Tag.INT));
-        reserve(new Word("string",Tag.STRING));
-        reserve(new Word("float",Tag.FLOAT));
-        reserve(new Word("init",Tag.INIT));
-        reserve(new Word("stop",Tag.STOP));
-        reserve(new Word("else",Tag.ELSE));
-        reserve(new Word("do",Tag.DO));
-        reserve(new Word("while",Tag.WHILE));
-        reserve(new Word("read",Tag.READ));
-        reserve(new Word("write",Tag.WRITE));
+        reserve(new Word("if",Tag.IF,0));
+        reserve(new Word("class",Tag.CLASS,0));
+        reserve(new Word("int",Tag.INT,0));
+        reserve(new Word("string",Tag.STRING,0));
+        reserve(new Word("float",Tag.FLOAT,0));
+        reserve(new Word("init",Tag.INIT,0));
+        reserve(new Word("stop",Tag.STOP,0));
+        reserve(new Word("else",Tag.ELSE,0));
+        reserve(new Word("do",Tag.DO,0));
+        reserve(new Word("while",Tag.WHILE,0));
+        reserve(new Word("read",Tag.READ,0));
+        reserve(new Word("write",Tag.WRITE,0));
    
         
     }
     
     private void readch() throws IOException{
         ch = (char) file.read();
-        System.out.println(ch);
+        /*if(ch == 65535){
+            exit(0);
+        }*/
     }
     
     private boolean readch(char c) throws IOException{
@@ -84,23 +85,45 @@ public class Lexer {
         switch (ch){ //operador
             case '&':
                 if (readch('&')) return Word.and;   // &&
-                else return new Token('&');         // &
+                else return new Token('&',0);         // &
             case '|':
                 if (readch('|')) return Word.or;    // ||
-                else return new Token('|');         // |
+                else return new Token('|',0);         // |
             case '=':
                 if (readch('=')) return Word.eq;      // ==
-                else return new Token('=');         // =
+                else return new Token('=',0);         // =
             case '<':
                 if (readch('=')) return Word.le;    // <=
-                else return new Token('<');         // <
+                else return new Token('<',0);         // <
             case '>':
                 if (readch('=')) return Word.ge;    // >=
-                else return new Token('>');         // >
+                else return new Token('>',0);         // >
             case '!':
                 if (readch('=')) return Word.ne;     // !=
-                else return new Token('!');         // !
+                else return new Token('!',0);         // !
+            case '/':
+                if(readch('*')) ignoreComment('*');
+                else if(ch=='/') ignoreComment('/');
+                else return new Token('/',0);
         }
+        
+        //string
+        if(ch == '"'){
+            StringBuffer sb = new StringBuffer();
+            do {
+                sb.append(ch);
+                readch();
+                if(ch == 65535){
+                    System.out.println("Erro: Aspas não foram fechadas.");
+                    //System.err.print
+                    exit(0);
+                }
+            }while(ch != '"');
+            sb.append(ch);
+                        readch();
+            return new StringSentence(sb.toString(),Tag.STR,0);
+        }
+        
         
         //Numeros  (constante Numericas)
         if (Character.isDigit(ch)) {
@@ -117,7 +140,7 @@ public class Lexer {
             do {
                 sb.append(ch);
                 readch();
-            }while(Character.isLetterOrDigit(ch));
+            }while(Character.isLetterOrDigit(ch) || ch == '_');
             
             String s = sb.toString();
             Word w = (Word) words.get(s);
@@ -125,13 +148,59 @@ public class Lexer {
             if(w!=null){
                 return w;
             }
-            w = new Word(s,Tag.ID);
+            w = new Word(s,Tag.ID,0);
             words.put(s,w);
             return w;
         }
-        Token t = new Token(ch);
+        Token t = new Token(ch,0);
         ch = ' ';
         return t;
+    }
+
+    private void ignoreComment(char type) throws IOException {
+        if(type == '*'){
+            boolean exit = false;
+        
+            while(true){
+                readch();
+                if(ch == '*'){
+                    do{
+                        if(readch('/')){
+                         exit = true;
+                         break;
+                        }
+                    }while(ch=='*');
+
+                            if(exit){
+                                break;
+                            }
+                }
+                if(ch == 65535){
+                    System.out.println("Erro: Comentário não foi fechado.");
+                    exit(0);
+                }
+            }
+            for (;;readch()){
+                if(ch==' '||ch=='\t'||ch=='\r'||ch=='\b'){
+                    continue;
+                }
+                else if (ch=='\n') line ++; //conta linha
+                else break;
+            }
+        }
+        
+        else{
+            do{readch();}while(ch != '\n');
+            
+            for (;;readch()){
+                if(ch==' '||ch=='\t'||ch=='\r'||ch=='\b'){
+                    continue;
+                }
+                else if (ch=='\n') line ++; //conta linha
+                else break;
+            }
+            
+        }
     }
     
 

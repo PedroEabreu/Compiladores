@@ -44,5 +44,6 @@ public class Tag {
     //Outros tokens
     public final static int NUM = 283;
     public final static int ID = 284;
+    public final static int STR = 285;
 
 }

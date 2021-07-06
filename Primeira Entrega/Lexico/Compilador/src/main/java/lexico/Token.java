@@ -20,10 +20,10 @@ public class Token {
     }
     
     public String toString(){
-        if (lexeme == '1') {
+       /* if (lexeme == '1') {
             return "" + lexeme;
         }
-        else return "" + tag;
+        else*/ return "" + tag;
     }
 
     public String imprimeToken(Token T) {
@@ -116,9 +116,13 @@ public class Token {
             case Tag.ID:
                 valor = "id";
                 break;
+            case Tag.STR:
+                valor = "str";
+                break;
             default:
                 valor = "" + (char) tag;
         }
+        return valor;
     }
     public String getLexeme(){
         return lexeme;
@@ -133,9 +137,9 @@ public class Token {
         int a = (int)'a';
         int z = (int)'z';
         if (((int)ch >= A && (int)ch <=Z)|| ((int)ch >=a && (int)ch <= z)){
-            return true
+            return true;
         }
-        return valor;
+        return false;
     }
 
     public static boolean isNumber(char ch){

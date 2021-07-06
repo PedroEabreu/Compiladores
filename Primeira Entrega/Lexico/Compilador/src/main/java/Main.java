@@ -1,6 +1,7 @@
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Set;
 import lexico.*;
 
 /*
@@ -20,19 +21,40 @@ public class Main{
          //instanciação do objeto  
         Lexer lex;
         lex = new Lexer("arq.txt");
-        System.out.println("teste funcionamento"); 
-        
+        char aspas = '"';
+        int i = 0;
         while(true){
             Token text = lex.scan();
+            System.out.print("Token " + ++i + ": ");
+            
+
+            System.out.print("<" + text.imprimeToken(text));
+            if("id".equals(text.imprimeToken(text))){
+                Word aux = (Word) text;
+                System.out.println("," + aspas + aux.getLexeme()+aspas + ">");
+            }
+            else if("num".equals(text.imprimeToken(text))){
+                Num aux2 = (Num) text;
+                System.out.println("," + aspas + aux2.toString() + aspas + ">");
+            }
+            else if("str".equals(text.imprimeToken(text))){
+                StringSentence aux3 = (StringSentence) text;
+                System.out.println("," + aspas + aux3.toString() + aspas + ">");
+            }
+            else{
+                System.out.println(">");
+            }
+            
             if(text.tag == 261){
                 break;
             }
-            System.out.print('<');
-            System.out.print(text.tag);
-            System.out.print(',');
-            System.out.println(text.imprimeToken(text)+'>');
         }
-        System.out.println(lex.words);
-        
+        System.out.println("\n\n" + "***************************" + "\n\n" + "-->Tabela de Símbolos\n");
+        int j=0;
+        Set<String> keys = lex.words.keySet();
+      
+        for(String key: keys){
+            System.out.println("Lexema "+ ++j + " = " + '"' +key+'"');
+        }        
      }  
 }
