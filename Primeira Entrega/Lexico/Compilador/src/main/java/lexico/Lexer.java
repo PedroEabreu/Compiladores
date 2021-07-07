@@ -56,9 +56,6 @@ public class Lexer {
     
     private void readch() throws IOException{
         ch = (char) file.read();
-        /*if(ch == 65535){
-            exit(0);
-        }*/
     }
     
     private boolean readch(char c) throws IOException{
@@ -115,7 +112,6 @@ public class Lexer {
                 readch();
                 if(ch == 65535){
                     System.out.println("Erro: Aspas não foram fechadas.");
-                    //System.err.print
                     exit(0);
                 }
             }while(ch != '"');
@@ -151,6 +147,9 @@ public class Lexer {
             w = new Word(s,Tag.ID,0);
             words.put(s,w);
             return w;
+        }
+        if(ch == 65535){
+            exit(0);
         }
         Token t = new Token(ch,0);
         ch = ' ';

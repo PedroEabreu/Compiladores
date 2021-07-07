@@ -1,20 +1,22 @@
+class MinhaClasse
 init
-// Outro programa de teste
+ float a, b, c;
+/*
+ write("Digite um número");
+ read(a);
+ write("Digite outro número: ");
+ read(b);
+ write("Digite mais um número: ");
+ read(c;
 
-int idade, j, k, @total;
-string nome, texto;
+ maior := 0;
+ if ( a>b && a>c )
+ maior = a;
+ else
+ if (b>c)
+ maior = b;
+ else
+ maior = c;
 
-write("Digite o seu nome: ");
-read(nome);
-write("Digite o seu sobrenome");
-read(sobrenome);
-write("Digite a sua idade: ");
-read (idade);
-k := i * (5-i * 50 / 10;
-j := i * 10;
-k := i * j / k;
-texto = nome + " " + sobrenome + ", os números gerados sao: ";
-write (text);
-write(j);
-write(k);
-stop
+ write("O maior número é: ");
+ write(maior);
