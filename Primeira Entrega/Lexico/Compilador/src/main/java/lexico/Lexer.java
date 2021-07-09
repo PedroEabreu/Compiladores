@@ -110,7 +110,7 @@ public class Lexer {
             do {
                 sb.append(ch);
                 readch();
-                if(ch == 65535){
+                if(ch == '\n'){
                     System.out.println("Erro: Aspas não foram fechadas.");
                     exit(0);
                 }
