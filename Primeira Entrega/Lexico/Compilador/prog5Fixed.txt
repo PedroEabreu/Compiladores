@@ -20,3 +20,4 @@ init
 
  write("O maior número é: ");
  write(maior);
+stop
