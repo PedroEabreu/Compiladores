@@ -1,27 +1,19 @@
-class Teste3
-/** Verificando fluxo de controle
-Programa com if e while aninhados **/
-int i;
-int media, soma;
+ /* stop */
+int 9a, 9b;
+float 8a, @b;
+char "teste", "armazena";
+boolean *tem*;
 
-init
- soma = 0;
+do{
+	begin
+	print("teste %i e %i;" 9a, 9b)
+	8a=9a*9b,
+	@b=9a/9b,
+	9a=9a+(@b/2);
+	end
+}(9a <= 9b || *tem* == false)
 
- write("Quantos dados deseja informar?" );
- read (qtd);
- if (qtd>=2){
- i=0;
- do{
- write("Altura: ");
- read (altura);
- soma = soma+altura;
- i = i + 1;
- }while( i < qtd);
- media = soma / qtd;
- write("Media: ");
- write (media);
- }
- else{
- write("Quantidade inválida.");
- }
+write("novo")p
 stop
+
+

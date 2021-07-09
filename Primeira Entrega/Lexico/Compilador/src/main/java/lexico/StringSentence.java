@@ -13,8 +13,8 @@ public class StringSentence extends Token{
     
     String sentence;
     
-    public StringSentence(String s, int tag, int line){
-        super(tag, line);
+    public StringSentence(String s, int tag){
+        super(tag);
         sentence = s;
     }
 

@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 import lexico.*;
-
+import java.util.Scanner;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,7 +20,59 @@ public class Main{
      public static void main (String[] a) throws FileNotFoundException, IOException  {   
          //instanciação do objeto  
         Lexer lex;
-        lex = new Lexer("arq.txt");
+        String fileName = "prog1.txt";
+        Scanner ler = new Scanner(System.in);
+        System.out.println("Digite uma opção: ");
+        System.out.println("Rodar teste 1: 1");
+        System.out.println("Rodar teste 2: 2");
+        System.out.println("Rodar teste 2 Corrigido: 3");
+        System.out.println("Rodar teste 3 : 4");
+        System.out.println("Rodar teste 3 Corrigido: 5");
+        System.out.println("Rodar teste 4: 6");
+        System.out.println("Rodar teste 4 Corrigido: 7");
+        System.out.println("Rodar teste 5: 8");
+        System.out.println("Rodar teste 5 Corrigido: 9");
+        System.out.println("Digitar nome do arquivo: 10");
+        
+        int opt;
+                opt = ler.nextInt();
+        switch(opt){
+            case 1:
+                fileName = "prog1.txt";
+                break;
+            case 2:
+                fileName = "prog2.txt";
+                break;
+            case 3:
+                fileName = "prog2Fixed.txt";
+                break;
+            case 4:
+                fileName = "prog3.txt";
+                break;
+            case 5:
+                fileName = "prog3Fixed.txt";
+                break;
+            case 6:
+                fileName = "prog4.txt";
+                break;
+            case 7:
+                fileName = "prog4Fixed.txt";
+                break;
+            case 8:
+                fileName = "prog5.txt";
+                break;
+            case 9:
+                fileName = "prog5Fixed.txt";
+                break;
+            case 10:
+                fileName = ler.nextLine();
+                fileName = ler.nextLine();
+                break;
+        }
+        
+        
+        //fileName = ler.nextLine();
+        lex = new Lexer(fileName);
         char aspas = '"';
         int i = 0;
         while(true){
@@ -55,6 +107,6 @@ public class Main{
       
         for(String key: keys){
             System.out.println("Lexema "+ ++j + " = " + '"' +key+'"');
-        }        
+        }
      }  
 }

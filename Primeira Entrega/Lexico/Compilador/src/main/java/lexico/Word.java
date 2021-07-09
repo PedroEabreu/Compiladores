@@ -16,17 +16,18 @@ public class Word extends Token{
         return lexeme;
     }
     
-    public static final Word and = new Word("&&",Tag.AND,0);
-    public static final Word or = new Word("||",Tag.OR,0);
-    public static final Word eq = new Word("==",Tag.EQ,0);
-    public static final Word ne = new Word("!=",Tag.NE,0);
-    public static final Word le = new Word("<=",Tag.LE,0);
-    public static final Word ge = new Word(">=",Tag.GE,0);
-    public static final Word True = new Word("&&",Tag.TRUE,0);
-    public static final Word False = new Word("&&",Tag.FALSE,0);
+    public static final Word and = new Word("&&",Tag.AND);
+    public static final Word or = new Word("||",Tag.OR);
+    public static final Word eq = new Word("==",Tag.EQ);
+    public static final Word ne = new Word("!=",Tag.NE);
+    public static final Word le = new Word("<=",Tag.LE);
+    public static final Word ge = new Word(">=",Tag.GE);
+    public static final Word True = new Word("&&",Tag.TRUE);
+    public static final Word False = new Word("&&",Tag.FALSE);
+    public static final Word att = new Word(":=",Tag.ATT);
     
-    public Word(String s, int tag, int line){
-        super(tag, line);
+    public Word(String s, int tag){
+        super(tag);
         lexeme = s;
     }
     

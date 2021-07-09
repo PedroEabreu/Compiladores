@@ -12,9 +12,9 @@ package lexico;
 public class Token {
     public final int tag;
     public int line;
-    private String lexeme="1";
+    private String lexeme="";
     
-    public Token(int t, int line){
+    public Token(int t){
         tag = t;
         this.line = line;
     }
@@ -118,6 +118,9 @@ public class Token {
                 break;
             case Tag.STR:
                 valor = "str";
+                break;
+            case Tag.ATT:
+                valor = "assignment";
                 break;
             default:
                 valor = "" + (char) tag;

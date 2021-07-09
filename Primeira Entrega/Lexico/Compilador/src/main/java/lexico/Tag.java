@@ -25,7 +25,8 @@ public class Tag {
     public final static int WRITE = 267;
     public final static int BEGIN = 268;
     public final static int END = 269;
-    public  final static int NOT = 270;
+    public final static int NOT = 270;
+    public final static int ATT = 286;
     
     //Operadores e pontuação
     public final static int EQ = 271;
