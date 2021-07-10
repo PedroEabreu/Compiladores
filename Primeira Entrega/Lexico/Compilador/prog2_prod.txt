@@ -1,0 +1,17 @@
+/*stop*/
+int 9a, 9b;
+float 8a, @b;
+char "teste", "armazena";
+boolean *tem*;
+
+do{
+begin
+print("teste %i e %i;" 9a, 9b)
+8a=9a*9b,
+@b=9a/9b,
+9a=9a+(@b/2);
+end
+}(9a <= 9b || *tem* ==false)
+
+write("novo)p
+stop

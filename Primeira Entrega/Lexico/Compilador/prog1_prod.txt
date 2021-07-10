@@ -1,0 +1,23 @@
+class TesteGrupo_01
+/*teste1*/
+init
+float a, b, c;
+write("soma=", a+b);
+write("Multiplicação
+="a*b);
+write("Soma a=a+b");
+write(Multiplicação=a*c);
+
+maior :=0;
+
+if(a>b || a>c || b=>c)
+begin
+print(" ");
+else if (b<c && a<=b)
+print("stop");
+else
+print(init);
+end
+write ("O maior numero é: ");
+Write(maior);
+stop
