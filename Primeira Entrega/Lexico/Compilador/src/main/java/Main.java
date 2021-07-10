@@ -1,4 +1,3 @@
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
@@ -15,10 +14,10 @@ import java.util.Scanner;
  * @author pedroelias
  */
 public class Main{
-    //classe principal  
-     
-     public static void main (String[] a) throws FileNotFoundException, IOException  {   
-         //instanciação do objeto  
+    //classe principal
+
+    public static void main (String[] a) throws FileNotFoundException, IOException  {
+        //instanciação do objeto
         Lexer lex;
         String fileName = "prog1.txt";
         Scanner ler = new Scanner(System.in);
@@ -32,10 +31,14 @@ public class Main{
         System.out.println("Rodar teste 4 Corrigido: 7");
         System.out.println("Rodar teste 5: 8");
         System.out.println("Rodar teste 5 Corrigido: 9");
-        System.out.println("Digitar nome do arquivo: 10");
-        
+        System.out.println("Rodar teste 1 feito: 10");
+        System.out.println("Rodar teste 1 feito Corrigido: 11");
+        System.out.println("Rodar teste 2 feito: 12");
+        System.out.println("Rodar teste 1 feito Corrigido: 13");
+        System.out.println("Digitar nome do arquivo: 14");
+
         int opt;
-                opt = ler.nextInt();
+        opt = ler.nextInt();
         switch(opt){
             case 1:
                 fileName = "prog1.txt";
@@ -65,12 +68,24 @@ public class Main{
                 fileName = "prog5Fixed.txt";
                 break;
             case 10:
+                fileName = "prog1_prod.txt";
+                break;
+            case 11:
+                fileName = "prog1_prod_Fixed.txt";
+                break;
+            case 12:
+                fileName = "prog2_prod.txt";
+                break;
+            case 13:
+                fileName = "prog2_prod_Fixed.txt";
+                break;
+            case 14:
                 fileName = ler.nextLine();
                 fileName = ler.nextLine();
                 break;
         }
-        
-        
+
+
         //fileName = ler.nextLine();
         lex = new Lexer(fileName);
         char aspas = '"';
@@ -78,7 +93,7 @@ public class Main{
         while(true){
             Token text = lex.scan();
             System.out.print("Token " + ++i + ": ");
-            
+
 
             System.out.print("<" + text.imprimeToken(text));
             if("id".equals(text.imprimeToken(text))){
@@ -96,7 +111,7 @@ public class Main{
             else{
                 System.out.println(">");
             }
-            
+
             if(text.tag == 261){
                 break;
             }
@@ -104,9 +119,9 @@ public class Main{
         System.out.println("\n\n" + "***************************" + "\n\n" + "-->Tabela de Símbolos\n");
         int j=0;
         Set<String> keys = lex.words.keySet();
-      
+
         for(String key: keys){
             System.out.println("Lexema "+ ++j + " = " + '"' +key+'"');
         }
-     }  
+    }
 }
