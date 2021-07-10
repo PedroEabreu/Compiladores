@@ -23,16 +23,20 @@ public class Main{
         String fileName = "prog1.txt";
         Scanner ler = new Scanner(System.in);
         System.out.println("Digite uma opção: ");
-        System.out.println("Rodar teste 1: 1");
-        System.out.println("Rodar teste 2: 2");
-        System.out.println("Rodar teste 2 Corrigido: 3");
-        System.out.println("Rodar teste 3 : 4");
-        System.out.println("Rodar teste 3 Corrigido: 5");
-        System.out.println("Rodar teste 4: 6");
-        System.out.println("Rodar teste 4 Corrigido: 7");
-        System.out.println("Rodar teste 5: 8");
-        System.out.println("Rodar teste 5 Corrigido: 9");
-        System.out.println("Digitar nome do arquivo: 10");
+        System.out.println("1 - Rodar teste 1: 1");
+        System.out.println("2 - Rodar teste 2: 2");
+        System.out.println("3 - Rodar teste 2 Corrigido: 3");
+        System.out.println("4 - Rodar teste 3 : 4");
+        System.out.println("5 - Rodar teste 3 Corrigido: 5");
+        System.out.println("6 - Rodar teste 4: 6");
+        System.out.println("7 - Rodar teste 4 Corrigido: 7");
+        System.out.println("8 - Rodar teste 5: 8");
+        System.out.println("9 - Rodar teste 5 Corrigido: 9");
+        System.out.println("10 - Rodar teste 6");
+        System.out.println("11 - Rodar teste 6 Corrigido");
+        System.out.println("12 - Rodar teste 7");
+        System.out.println("13 - Rodar teste 7 Corrigido");
+        System.out.println("14 - Digitar nome do arquivo: 10");
         
         int opt;
                 opt = ler.nextInt();
@@ -65,6 +69,18 @@ public class Main{
                 fileName = "prog5Fixed.txt";
                 break;
             case 10:
+                fileName = "prog6.txt";
+                break;
+            case 11:
+                fileName = "prog6Fixed.txt";
+                break;
+            case 12:
+                fileName = "prog7.txt";
+                break;
+            case 13:
+                fileName = "prog7Fixed.txt";
+                break;
+            case 14:
                 fileName = ler.nextLine();
                 fileName = ler.nextLine();
                 break;
