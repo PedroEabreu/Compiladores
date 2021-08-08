@@ -1,9 +1,9 @@
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 import lexico.*;
 import java.util.Scanner;
+import sintatico.Parser;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,31 +15,31 @@ import java.util.Scanner;
  * @author pedroelias
  */
 public class Main{
-    //classe principal  
-     
-     public static void main (String[] a) throws FileNotFoundException, IOException  {   
-         //instanciação do objeto  
-        Lexer lex;
+    //classe principal
+
+    public static void main (String[] a) throws FileNotFoundException, IOException  {
+        //instanciação do objeto
+      /*  Lexer lex;
         String fileName = "prog1.txt";
         Scanner ler = new Scanner(System.in);
         System.out.println("Digite uma opção: ");
-        System.out.println("1 - Rodar teste 1: 1");
-        System.out.println("2 - Rodar teste 2: 2");
-        System.out.println("3 - Rodar teste 2 Corrigido: 3");
-        System.out.println("4 - Rodar teste 3 : 4");
-        System.out.println("5 - Rodar teste 3 Corrigido: 5");
-        System.out.println("6 - Rodar teste 4: 6");
-        System.out.println("7 - Rodar teste 4 Corrigido: 7");
-        System.out.println("8 - Rodar teste 5: 8");
-        System.out.println("9 - Rodar teste 5 Corrigido: 9");
+        System.out.println("1 - Rodar teste 1");
+        System.out.println("2 - Rodar teste 2");
+        System.out.println("3 - Rodar teste 2 Corrigido");
+        System.out.println("4 - Rodar teste 3");
+        System.out.println("5 - Rodar teste 3 Corrigido");
+        System.out.println("6 - Rodar teste 4");
+        System.out.println("7 - Rodar teste 4 Corrigido");
+        System.out.println("8 - Rodar teste 5");
+        System.out.println("9 - Rodar teste 5 Corrigido");
         System.out.println("10 - Rodar teste 6");
         System.out.println("11 - Rodar teste 6 Corrigido");
         System.out.println("12 - Rodar teste 7");
         System.out.println("13 - Rodar teste 7 Corrigido");
-        System.out.println("14 - Digitar nome do arquivo: 10");
+        System.out.println("14 - Digitar nome do arquivo");
         
         int opt;
-                opt = ler.nextInt();
+        opt = ler.nextInt();
         switch(opt){
             case 1:
                 fileName = "prog1.txt";
@@ -85,8 +85,8 @@ public class Main{
                 fileName = ler.nextLine();
                 break;
         }
-        
-        
+
+
         //fileName = ler.nextLine();
         lex = new Lexer(fileName);
         char aspas = '"';
@@ -94,7 +94,7 @@ public class Main{
         while(true){
             Token text = lex.scan();
             System.out.print("Token " + ++i + ": ");
-            
+
 
             System.out.print("<" + text.imprimeToken(text));
             if("id".equals(text.imprimeToken(text))){
@@ -112,7 +112,7 @@ public class Main{
             else{
                 System.out.println(">");
             }
-            
+
             if(text.tag == 261){
                 break;
             }
@@ -120,9 +120,16 @@ public class Main{
         System.out.println("\n\n" + "***************************" + "\n\n" + "-->Tabela de Símbolos\n");
         int j=0;
         Set<String> keys = lex.words.keySet();
-      
+
         for(String key: keys){
             System.out.println("Lexema "+ ++j + " = " + '"' +key+'"');
         }
-     }  
+        System.out.println("Linhas = " + lex.line*/
+
+        Parser parser = new Parser();
+        
+      
+      
+      
+    }
 }

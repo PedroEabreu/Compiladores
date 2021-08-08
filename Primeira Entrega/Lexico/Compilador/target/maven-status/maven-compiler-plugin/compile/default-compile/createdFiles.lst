@@ -1,5 +1,6 @@
 lexico/Num.class
 Main.class
+sintatico/Parser.class
 lexico/Lexer.class
 lexico/Tag.class
 lexico/StringSentence.class

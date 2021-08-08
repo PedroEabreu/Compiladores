@@ -14,7 +14,7 @@ public class Token {
     public int line;
     private String lexeme="";
     
-    public Token(int t){
+    public Token(int t,int line){
         tag = t;
         this.line = line;
     }
@@ -26,7 +26,7 @@ public class Token {
         else*/ return "" + tag;
     }
 
-    public String imprimeToken(Token T) {
+    public void imprimeToken(Token T) {
         String valor;
         switch (tag) {
             case Tag.CLASS:
@@ -78,25 +78,25 @@ public class Token {
                 valor = "equal";
                 break;
             case Tag.GE:
-                valor = "greater_equals";
+                valor = ">=";
                 break;
             case Tag.LE:
-                valor = "less_equals";
+                valor = "<=";
                 break;
             case Tag.NE:
-                valor = "not_equal";
+                valor = "!=";
                 break;
             case Tag.GT:
-                valor = "greater_than";
+                valor = ">";
                 break;
             case Tag.LT:
-                valor = "less_than";
+                valor = "<";
                 break;
             case Tag.AND:
-                valor = "and";
+                valor = "&&";
                 break;
             case Tag.OR:
-                valor = "or";
+                valor = "||";
                 break;
             case Tag.ADD:
                 valor = "add";
@@ -120,12 +120,13 @@ public class Token {
                 valor = "str";
                 break;
             case Tag.ATT:
-                valor = "assignment";
+                valor = ":=";
                 break;
             default:
                 valor = "" + (char) tag;
         }
-        return valor;
+        System.out.print(valor);
+         
     }
     public String getLexeme(){
         return lexeme;

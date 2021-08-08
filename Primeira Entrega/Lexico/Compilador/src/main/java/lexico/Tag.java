@@ -33,8 +33,8 @@ public class Tag {
     public final static int GE = 272;
     public final static int LE = 273;
     public final static int NE = 274;
-    public final static int GT = 275;
-    public final static int LT = 276;
+    public final static int GT = 62;
+    public final static int LT = 60;
     public final static int AND = 277;
     public final static int OR = 278;
     public final static int ADD = 279;
@@ -46,5 +46,7 @@ public class Tag {
     public final static int NUM = 283;
     public final static int ID = 284;
     public final static int STR = 285;
-
+    
+    //Token de final de arquivo
+    public final static int EOF = 287;
 }
